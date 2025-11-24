@@ -202,16 +202,16 @@ Clear skies! 🌟
 
 ### 6. Save Output Files
 
-Create files in the `/mnt/user-data/outputs/{week}` directory, where `{week}` is the week of the newsletter:
+Create files in the `./output/{week}` directory, where `{week}` is the week of the newsletter:
 
 **Naming Convention:**
 - Date format: `nov24_2025` (month + day + year, lowercase)
 - HTML: `sjaa_newsletter_[date].html`
-- Discord (split): `sjaa_newsletter_[date]_discord_part1.txt`, `part2.txt`, etc.
+- Discord (split): `sjaa_newsletter_[date]_discord_part1.md`, `part2.md`, etc.
 
 **Example outputs for 2025-11-24:**
 - `sjaa_newsletter_nov24_2025.html`
-- `sjaa_newsletter_nov24_2025_discord.txt` (or split into parts)
+- `sjaa_newsletter_nov24_2025_discord.md` (or split into parts)
 
 ### Member-Focused Messaging
 

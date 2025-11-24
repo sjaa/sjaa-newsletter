@@ -53,3 +53,27 @@ Note that if you are using RVM, you may need to tell Claude exactly where yoru R
 ## Usage
 
 Launch Claude Code and run `/newsletter [date] [message]`.  Check the MCP server status with `/mcp` command.  Output will be sent to the `output/` directory, and includes an HTML file for the email newsletter, and a set of Markdown-formatted text files for use in Discord.
+
+To make things even smoother, you may consider allowing access to the tools used in this process through your `settings.local.json` file:
+
+```json
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(tree:*)",
+      "mcp__google-calendar-mcp__list-calendars",
+      "mcp__google-calendar-mcp__search-events",
+      "mcp__sjaa-meetup-mcp__get-meetup-events",
+      "WebFetch(domain:*.seasky.org)",
+      "WebFetch(domain:*.timeanddate.com)"
+    ],
+    "deny": [],
+    "ask": []
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "google-calendar-mcp"
+  ]
+}
+```

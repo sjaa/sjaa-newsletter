@@ -118,7 +118,7 @@ SEASKY_URL = "http://www.seasky.org/astronomy/astronomy-calendar-2025.html"
 TIMEANDDATE_URL = "https://www.timeanddate.com/astronomy/sights-to-see.html"
 
 # Output directory
-OUTPUT_DIR = "/mnt/user-data/outputs/"
+OUTPUT_DIR = "./output"
 
 # Member resources
 MEMBERSHIP_URL = "https://membership.sjaa.net"
