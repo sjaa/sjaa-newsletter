@@ -7,8 +7,15 @@
         "@cocal/google-calendar-mcp"
       ],
       "env": {
-        "GOOGLE_OAUTH_CREDENTIALS": "${GOOGLE_OAUTH_CREDENTIALS_PATH}"
+        "GOOGLE_OAUTH_CREDENTIALS": "/path/to/client_secret.json"
       }
+    },
+    "sjaa-meetup-mcp": {
+      "type": "stdio",
+      "command": "ruby",
+      "args": [
+        "/path/to/cwd/meetup_mcp_server.rb"
+      ]
     }
   }
 }

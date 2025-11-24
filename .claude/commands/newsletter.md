@@ -4,6 +4,7 @@ Generate the SJAA weekly newsletter for the specified date.
 
 ## Arguments
 - `date` (required): The start date of the week in YYYY-MM-DD format (e.g., 2025-11-24)
+- `message` (optional): An optional message to include at the top of the newsletter.  
 
 ## Task
 
@@ -23,11 +24,13 @@ The user will provide a start date. Calculate:
 - Search: `site:meetup.com/sj-astronomy/events`
 - Extract events within the date range
 - Get: title, date, time, location, description, registration URL
+- Use the sjaa-meetup-mcp server if available to fetch events
 
 **From Google Calendar:**
 - Calendar ID: `c_4779ddc46fda914aaa8045b916044a480265c50bb4642df9420923706837a63e@group.calendar.google.com`
 - Time zone: `America/Los_Angeles`
 - Query with calculated time_min and time_max
+- Use the google-calendar-mcp server if available
 
 **Deduplication Rules:**
 - If an event appears in both sources, prefer the Meetup version (has better details)
@@ -36,7 +39,9 @@ The user will provide a start date. Calculate:
 ### 3. Gather Celestial Events
 
 **Sources:**
-- SeaSky.org: http://www.seasky.org/astronomy/astronomy-calendar-2025.html
+- SeaSky.org: 
+  - http://www.seasky.org/astronomy/astronomy-calendar-2025.html
+  - http://www.seasky.org/astronomy/astronomy-calendar-2026.html
 - TimeAndDate.com: https://www.timeanddate.com/astronomy/sights-to-see.html
 
 **Event Types to Highlight:**
@@ -197,12 +202,11 @@ Clear skies! 🌟
 
 ### 6. Save Output Files
 
-Create files in the `/mnt/user-data/outputs/` directory:
+Create files in the `/mnt/user-data/outputs/{week}` directory, where `{week}` is the week of the newsletter:
 
 **Naming Convention:**
 - Date format: `nov24_2025` (month + day + year, lowercase)
 - HTML: `sjaa_newsletter_[date].html`
-- Discord (single): `sjaa_newsletter_[date]_discord.txt`
 - Discord (split): `sjaa_newsletter_[date]_discord_part1.txt`, `part2.txt`, etc.
 
 **Example outputs for 2025-11-24:**
