@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "google-calendar-mcp": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "@cocal/google-calendar-mcp"
+      ],
+      "env": {
+        "GOOGLE_OAUTH_CREDENTIALS": "${GOOGLE_OAUTH_CREDENTIALS_PATH}"
+      }
+    }
+  }
+}
