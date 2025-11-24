@@ -125,7 +125,7 @@ Create an HTML file with embedded CSS:
 <body>
     <div class="header">
         <img src="https://membership.sjaa.net/assets/logo_small-529b119e.png" alt="SJAA Logo" class="header-logo">
-        <h1>🌟 SJAA Weekly Newsletter</h1>
+        <h1>SJAA Weekly Newsletter</h1>
         <p>Week of [WEEK_HEADER]</p>
     </div>
 
@@ -217,9 +217,11 @@ Create files in the `/mnt/user-data/outputs/{week}` directory, where `{week}` is
 
 Always include:
 - Link to https://membership.sjaa.net for membership management
-- Volunteer opportunities email: volunteerchair@sjaa.net
+- Volunteer opportunities email: volunteer@sjaa.net
 - Emphasize member benefits (Mendoza Ranch access, member events)
 - Use 🔒 icon for member-only events
+
+Include the optional `message` argument in this same section.
 
 ### Final Steps
 
