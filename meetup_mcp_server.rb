@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'json'
+require 'date'
 require 'sjaa-meetup'
 
 # MCP Server for SJAA Meetup Events
@@ -24,6 +25,14 @@ class MeetupMCPServer
               type: "string",
               description: "Meetup group URL (defaults to SJAA Meetup page)",
               default: MEETUP_URL
+            },
+            start_date: {
+              type: "string",
+              description: "Filter events starting from this date (ISO 8601 format: YYYY-MM-DD)"
+            },
+            end_date: {
+              type: "string",
+              description: "Filter events up to this date (ISO 8601 format: YYYY-MM-DD)"
             }
           }
         }
@@ -68,12 +77,12 @@ class MeetupMCPServer
     end
   end
 
-  def event_to_hash(event)
-    {
+  def event_to_hash(event, truncate_description: false)
+    hash = {
       id: event.id,
       title: event.title,
       url: event.url,
-      description: event.description,
+      description: truncate_description ? truncate_text(event.description, 200) : event.description,
       date_time: event.date_time,
       end_time: event.end_time,
       status: event.status,
@@ -86,22 +95,94 @@ class MeetupMCPServer
       group_timezone: event.group_timezone,
       going_count: event.going_count
     }
+    hash[:description] += "..." if truncate_description && event.description&.length.to_i > 200
+    hash
+  end
+
+  def truncate_text(text, max_length)
+    return text if text.nil? || text.length <= max_length
+    text[0...max_length]
+  end
+
+  def parse_date(date_string)
+    return nil if date_string.nil? || date_string.empty?
+    Date.parse(date_string)
+  rescue ArgumentError
+    nil
+  end
+
+  def parse_event_date(event)
+    return nil if event.date_time.nil?
+    DateTime.parse(event.date_time).to_date
+  rescue ArgumentError
+    nil
+  end
+
+  def filter_events_by_date(events, start_date, end_date)
+    start_d = parse_date(start_date)
+    end_d = parse_date(end_date)
+
+    return events if start_d.nil? && end_d.nil?
+
+    events.select do |event|
+      event_date = parse_event_date(event)
+      next false if event_date.nil?
+
+      in_range = true
+      in_range = event_date >= start_d if start_d
+      in_range = in_range && event_date <= end_d if end_d
+      in_range
+    end
+  end
+
+  # Rough token estimation: ~4 characters per token
+  def estimate_tokens(text)
+    (text.length / 4.0).ceil
   end
 
   def get_meetup_events(arguments)
     url = arguments["url"] || MEETUP_URL
+    start_date = arguments["start_date"]
+    end_date = arguments["end_date"]
+    max_tokens = 24000 # Leave some buffer below 25k limit
 
     begin
       events = SJAA::Meetup.scrape(url)
 
+      # Filter events by date range if provided
+      events = filter_events_by_date(events, start_date, end_date)
+
       # Convert Event objects to hashes for JSON serialization
-      events_array = events.map { |event| event_to_hash(event) }
+      events_array = events.map { |event| event_to_hash(event, truncate_description: false) }
+
+      # Generate JSON and check token count
+      json_output = JSON.pretty_generate(events_array)
+      estimated_tokens = estimate_tokens(json_output)
+
+      # If we exceed the token limit, try with truncated descriptions
+      if estimated_tokens > max_tokens
+        STDERR.puts "Initial output (~#{estimated_tokens} tokens) exceeds limit, truncating descriptions..."
+        events_array = events.map { |event| event_to_hash(event, truncate_description: true) }
+        json_output = JSON.pretty_generate(events_array)
+        estimated_tokens = estimate_tokens(json_output)
+
+        # If still too large, progressively remove events from the end
+        while estimated_tokens > max_tokens && events_array.length > 1
+          events_array.pop
+          json_output = JSON.pretty_generate(events_array)
+          estimated_tokens = estimate_tokens(json_output)
+          STDERR.puts "Still too large (~#{estimated_tokens} tokens), reduced to #{events_array.length} events"
+        end
+
+        truncation_note = "\n\nNote: Descriptions truncated and/or some events omitted to fit within token limits."
+        json_output = JSON.pretty_generate(events_array) + truncation_note
+      end
 
       {
         content: [
           {
             type: "text",
-            text: JSON.pretty_generate(events_array)
+            text: json_output
           }
         ]
       }

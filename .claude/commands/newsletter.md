@@ -25,6 +25,7 @@ The user will provide a start date. Calculate:
 - Extract events within the date range
 - Get: title, date, time, location, description, registration URL
 - Use the sjaa-meetup-mcp server if available to fetch events
+  - Pass `start_date` and `end_date` parameters to filter events (YYYY-MM-DD format)
 
 **From Google Calendar:**
 - Calendar ID: `c_4779ddc46fda914aaa8045b916044a480265c50bb4642df9420923706837a63e@group.calendar.google.com`

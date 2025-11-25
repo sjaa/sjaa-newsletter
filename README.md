@@ -63,6 +63,7 @@ To make things even smoother, you may consider allowing access to the tools used
       "Bash(mkdir:*)",
       "Bash(tree:*)",
       "mcp__google-calendar-mcp__list-calendars",
+      "mcp__google-calendar-mcp__list-events",
       "mcp__google-calendar-mcp__search-events",
       "mcp__sjaa-meetup-mcp__get-meetup-events",
       "WebFetch(domain:*.seasky.org)",
@@ -76,4 +77,10 @@ To make things even smoother, you may consider allowing access to the tools used
     "google-calendar-mcp"
   ]
 }
+```
+
+Run in batch mode with the above permissions and this command, which can be handy as part of a flow:
+
+```bash
+claude -p "/newsletter 2025-12-15" --permission-mode acceptEdits
 ```
