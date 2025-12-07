@@ -10,7 +10,25 @@ Generate the SJAA weekly newsletter for the specified date.
 
 You are generating the San Jose Astronomical Association (SJAA) weekly newsletter.
 
-### 1. Parse the Date Range
+### 1. Check Google Calendar MCP Authentication
+
+**IMPORTANT: Do this FIRST before gathering any data.**
+
+Check if Google Calendar MCP tools are available by looking for `mcp__google-calendar-mcp__*` tools in your available functions.
+
+**If Google Calendar MCP tools are NOT available:**
+- The OAuth tokens have likely expired (they expire after 1 week in test mode)
+- Inform the user they need to reauthenticate by running:
+  ```bash
+  GOOGLE_OAUTH_CREDENTIALS="`pwd`/gcp-oauth.keys.json" npx @cocal/google-calendar-mcp auth
+  ```
+- Tell the user to restart Claude Code after authentication completes
+- Do NOT proceed with newsletter generation until this is resolved
+
+**If Google Calendar MCP tools ARE available:**
+- Proceed with the newsletter generation
+
+### 2. Parse the Date Range
 
 The user will provide a start date. Calculate:
 - Start date: The provided date
@@ -18,7 +36,7 @@ The user will provide a start date. Calculate:
 - Week header format: "November 24-30, 2025"
 - Calendar query times: ISO format with Pacific timezone (-08:00)
 
-### 2. Gather SJAA Events
+### 3. Gather SJAA Events
 
 **From Meetup:**
 - Search: `site:meetup.com/sj-astronomy/events`
@@ -37,10 +55,10 @@ The user will provide a start date. Calculate:
 - If an event appears in both sources, prefer the Meetup version (has better details)
 - Match events by date/time and title similarity
 
-### 3. Gather Celestial Events
+### 4. Gather Celestial Events
 
 **Sources:**
-- SeaSky.org: 
+- SeaSky.org:
   - http://www.seasky.org/astronomy/astronomy-calendar-2025.html
   - http://www.seasky.org/astronomy/astronomy-calendar-2026.html
 - TimeAndDate.com: https://www.timeanddate.com/astronomy/sights-to-see.html
@@ -51,7 +69,7 @@ The user will provide a start date. Calculate:
 - Planetary events (oppositions, conjunctions)
 - Special phenomena (eclipses, occultations)
 
-### 4. Generate HTML Newsletter
+### 5. Generate HTML Newsletter
 
 Create an HTML file with embedded CSS:
 
@@ -149,7 +167,7 @@ Create an HTML file with embedded CSS:
 </html>
 ```
 
-### 5. Generate Discord Versions
+### 6. Generate Discord Versions
 
 Create Discord-formatted markdown:
 
@@ -201,7 +219,7 @@ Visit https://www.sjaa.net for more information.
 Clear skies! 🌟
 ```
 
-### 6. Save Output Files
+### 7. Save Output Files
 
 Create files in the `./output/{week}` directory, where `{week}` is the week of the newsletter:
 

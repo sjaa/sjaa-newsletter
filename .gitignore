@@ -1,2 +1,3 @@
 .mcp.json
 client_secret*
+gcp-oauth.keys.json
