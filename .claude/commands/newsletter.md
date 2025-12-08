@@ -71,13 +71,16 @@ The user will provide a start date. Calculate:
 
 ### 5. Generate HTML Newsletter
 
-Create an HTML file with embedded CSS:
+**IMPORTANT: Gmail Compatibility**
+This newsletter must be copy-pasteable into Gmail. Use table-based layout with inline styles only.
 
 **Styling:**
-- Header: Gradient background (#1a1a2e to #16213e), centered logo
+- Header: Dark background (#1a1a2e), centered logo
 - Celestial Section: Light blue background (#f0f4f8), purple accent border (#7c3aed)
 - Event Cards: Light gray background (#f8f9fa), blue accent border (#4a90e2)
 - Member Updates: Green background (#e8f5e9), green border (#4caf50)
+- Main container: 700px wide table, centered on page
+- All styles must be inline (no CSS classes or style tags)
 
 **Structure:**
 ```html
@@ -85,86 +88,112 @@ Create an HTML file with embedded CSS:
 <html>
 <head>
     <meta charset="UTF-8">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .header {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: white;
-            padding: 30px;
-            text-align: center;
-            border-radius: 8px;
-            margin-bottom: 30px;
-        }
-        .header-logo {
-            max-width: 150px;
-            margin-bottom: 15px;
-        }
-        .celestial-section {
-            background: #f0f4f8;
-            border-left: 4px solid #7c3aed;
-            padding: 20px;
-            margin-bottom: 25px;
-            border-radius: 4px;
-        }
-        .event {
-            background: #f8f9fa;
-            border-left: 4px solid #4a90e2;
-            padding: 20px;
-            margin-bottom: 25px;
-            border-radius: 4px;
-        }
-        .info-note {
-            padding: 15px;
-            margin-bottom: 25px;
-            border-radius: 4px;
-        }
-        .footer {
-            text-align: center;
-            padding: 20px;
-            color: #666;
-            border-top: 1px solid #ddd;
-            margin-top: 30px;
-        }
-        a {
-            color: #4a90e2;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
 </head>
-<body>
-    <div class="header">
-        <img src="https://membership.sjaa.net/assets/logo_small-529b119e.png" alt="SJAA Logo" class="header-logo">
-        <h1>SJAA Weekly Newsletter</h1>
-        <p>Week of [WEEK_HEADER]</p>
-    </div>
+<body style="margin: 0; padding: 0; background-color: #ffffff; font-family: Arial, sans-serif;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff;">
+        <tr>
+            <td align="center" style="padding: 20px 10px;">
+                <table role="presentation" width="700" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; max-width: 700px;">
+                    <!-- Header -->
+                    <tr>
+                        <td style="background-color: #1a1a2e; color: white; padding: 30px; text-align: center; border-radius: 8px;">
+                            <img src="https://membership.sjaa.net/assets/logo_small-529b119e.png" alt="SJAA Logo" style="max-width: 150px; margin-bottom: 15px; display: block; margin-left: auto; margin-right: auto;">
+                            <h1 style="margin: 0 0 10px 0; font-size: 28px; font-family: Arial, sans-serif;">SJAA Weekly Newsletter</h1>
+                            <p style="margin: 5px 0; font-size: 16px; font-family: Arial, sans-serif;">Week of [WEEK_HEADER]</p>
+                        </td>
+                    </tr>
 
-    <div class="info-note" style="background: #e8f5e9; border-left: 4px solid #4caf50;">
-        <strong>📢 Member Update</strong>
-        <p>Welcome to the weekly SJAA newsletter! Manage your membership at
-        <a href="https://membership.sjaa.net">membership.sjaa.net</a>.
-        Contact <a href="mailto:volunteerchair@sjaa.net">volunteerchair@sjaa.net</a>
-        to volunteer!</p>
-    </div>
+                    <!-- Spacer -->
+                    <tr><td style="height: 30px;"></td></tr>
 
-    <!-- Insert celestial and SJAA events sections here -->
+                    <!-- Member Update -->
+                    <tr>
+                        <td>
+                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                                <tr>
+                                    <td style="background-color: #e8f5e9; border-left: 4px solid #4caf50; padding: 20px; border-radius: 4px;">
+                                        <p style="margin: 0 0 10px 0; font-family: Arial, sans-serif; line-height: 1.6; color: #333;"><strong>📢 Member Update</strong></p>
+                                        <p style="margin: 0; font-family: Arial, sans-serif; line-height: 1.6; color: #333;">Welcome to the weekly SJAA newsletter! Manage your membership at <a href="https://membership.sjaa.net" style="color: #4a90e2; text-decoration: none;">membership.sjaa.net</a>. Contact <a href="mailto:volunteerchair@sjaa.net" style="color: #4a90e2; text-decoration: none;">volunteerchair@sjaa.net</a> to volunteer!</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
 
-    <div class="footer">
-        <p>San Jose Astronomical Association</p>
-        <p><a href="https://www.sjaa.net">www.sjaa.net</a> | <a href="https://membership.sjaa.net">membership.sjaa.net</a></p>
-        <p>Clear skies! 🌟</p>
-    </div>
+                    <!-- Spacer -->
+                    <tr><td style="height: 25px;"></td></tr>
+
+                    <!-- Celestial Section -->
+                    <tr>
+                        <td>
+                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                                <tr>
+                                    <td style="background-color: #f0f4f8; border-left: 4px solid #7c3aed; padding: 20px; border-radius: 4px;">
+                                        <h2 style="margin: 0 0 15px 0; color: #7c3aed; font-family: Arial, sans-serif; font-size: 22px;">✨ This Week in the Sky</h2>
+                                        <!-- Insert celestial events here -->
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Spacer -->
+                    <tr><td style="height: 25px;"></td></tr>
+
+                    <!-- Event Section (repeat for each event) -->
+                    <tr>
+                        <td>
+                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                                <tr>
+                                    <td style="background-color: #f8f9fa; border-left: 4px solid #4a90e2; padding: 20px; border-radius: 4px;">
+                                        <h3 style="margin: 0 0 15px 0; color: #4a90e2; font-family: Arial, sans-serif; font-size: 20px;">🔭 [Event Title]</h3>
+                                        <p style="margin: 0 0 5px 0; font-family: Arial, sans-serif; line-height: 1.6; color: #333;"><strong>Date:</strong> [Event Date]</p>
+                                        <!-- Event details here, all with inline styles -->
+                                        <!-- Use p, ul, li tags with inline styles -->
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Spacer -->
+                    <tr><td style="height: 30px;"></td></tr>
+
+                    <!-- Footer -->
+                    <tr>
+                        <td style="padding: 20px; text-align: center; color: #666; border-top: 1px solid #ddd;">
+                            <p style="margin: 0 0 10px 0; font-family: Arial, sans-serif;"><strong>San Jose Astronomical Association</strong></p>
+                            <p style="margin: 0 0 10px 0; font-family: Arial, sans-serif;"><a href="https://www.sjaa.net" style="color: #4a90e2; text-decoration: none;">www.sjaa.net</a> | <a href="https://membership.sjaa.net" style="color: #4a90e2; text-decoration: none;">membership.sjaa.net</a></p>
+                            <p style="margin: 20px 0 0 0; font-family: Arial, sans-serif;">Clear skies! 🌟</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>
+```
+
+**Key Requirements:**
+1. All content must be wrapped in nested tables
+2. Main content table is 700px wide with `max-width: 700px`
+3. Every element needs inline `style` attributes with:
+   - `font-family: Arial, sans-serif`
+   - `line-height: 1.6` for paragraphs
+   - `color: #333` for body text
+   - Explicit margins and padding
+4. No CSS classes or `<style>` tags
+5. Use `<table role="presentation">` for layout tables
+6. Buttons should be tables with links inside:
+```html
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top: 15px;">
+    <tr>
+        <td style="background-color: #4a90e2; border-radius: 4px;">
+            <a href="[URL]" style="display: inline-block; color: #ffffff; font-family: Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1; text-align: center; text-decoration: none; padding: 12px 24px; border-radius: 4px;">[Button Text]</a>
+        </td>
+    </tr>
+</table>
 ```
 
 ### 6. Generate Discord Versions
