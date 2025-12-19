@@ -10,6 +10,9 @@ Generate the SJAA weekly newsletter for the specified date.
 
 You are generating the San Jose Astronomical Association (SJAA) weekly newsletter.
 
+**IMPORTANT: Member-Only Audience**
+This newsletter is sent ONLY to SJAA members. DO NOT include calls to action to join or become a member. The audience already consists of paid members.
+
 ### 1. Check Google Calendar MCP Authentication
 
 **IMPORTANT: Do this FIRST before gathering any data.**
@@ -20,7 +23,7 @@ Check if Google Calendar MCP tools are available by looking for `mcp__google-cal
 - The OAuth tokens have likely expired (they expire after 1 week in test mode)
 - Inform the user they need to reauthenticate by running:
   ```bash
-  GOOGLE_OAUTH_CREDENTIALS="`pwd`/gcp-oauth.keys.json" npx @cocal/google-calendar-mcp auth
+  GOOGLE_OAUTH_CREDENTIALS="./gcp-oauth.keys.json" npx @cocal/google-calendar-mcp auth
   ```
 - Tell the user to restart Claude Code after authentication completes
 - Do NOT proceed with newsletter generation until this is resolved
@@ -113,7 +116,7 @@ This newsletter must be copy-pasteable into Gmail. Use table-based layout with i
                                 <tr>
                                     <td style="background-color: #e8f5e9; border-left: 4px solid #4caf50; padding: 20px; border-radius: 4px;">
                                         <p style="margin: 0 0 10px 0; font-family: Arial, sans-serif; line-height: 1.6; color: #333;"><strong>📢 Member Update</strong></p>
-                                        <p style="margin: 0; font-family: Arial, sans-serif; line-height: 1.6; color: #333;">Welcome to the weekly SJAA newsletter! Manage your membership at <a href="https://membership.sjaa.net" style="color: #4a90e2; text-decoration: none;">membership.sjaa.net</a>. Contact <a href="mailto:volunteerchair@sjaa.net" style="color: #4a90e2; text-decoration: none;">volunteerchair@sjaa.net</a> to volunteer!</p>
+                                        <p style="margin: 0; font-family: Arial, sans-serif; line-height: 1.6; color: #333;">Welcome to this week's SJAA newsletter! Manage your membership at <a href="https://membership.sjaa.net" style="color: #4a90e2; text-decoration: none;">membership.sjaa.net</a>. Contact <a href="mailto:volunteerchair@sjaa.net" style="color: #4a90e2; text-decoration: none;">volunteerchair@sjaa.net</a> to volunteer and help make our events happen!</p>
                                     </td>
                                 </tr>
                             </table>
@@ -221,7 +224,7 @@ Create Discord-formatted markdown:
 
 ## 📢 MEMBER UPDATE
 Welcome to this week's SJAA newsletter! Manage your membership at
-https://membership.sjaa.net. Contact volunteerchair@sjaa.net to get involved!
+https://membership.sjaa.net. Contact volunteerchair@sjaa.net to volunteer and help make our events happen!
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -263,11 +266,20 @@ Create files in the `./output/{week}` directory, where `{week}` is the week of t
 
 ### Member-Focused Messaging
 
-Always include:
+**Audience Context:**
+- This newsletter goes ONLY to SJAA members
+- DO NOT include calls to "join" or "become a member"
+- Members already have access to all member benefits
+
+**Always include:**
 - Link to https://membership.sjaa.net for membership management
-- Volunteer opportunities email: volunteer@sjaa.net
-- Emphasize member benefits (Mendoza Ranch access, member events)
+- Volunteer opportunities email: volunteerchair@sjaa.net
 - Use 🔒 icon for member-only events
+
+**For Member Observing Events (Mendoza Ranch, etc.):**
+- Include sign-up form: https://forms.gle/HkDVyM6XRSoM9a7i6
+- Link to observers mailing list: observers@sjaa.net (NOT the old Google Groups link)
+- Add weather disclaimer: "Please monitor observers@sjaa.net for go/no-go decisions based on weather conditions."
 
 Include the optional `message` argument in this same section.
 

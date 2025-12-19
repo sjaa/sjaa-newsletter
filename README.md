@@ -28,7 +28,7 @@ If you already have access to an OAuth Client secret file associated with a proj
    - Select "Desktop app" as the application type (Important!)
    - Add your email address as a test user under the [Audience](https://console.cloud.google.com/auth/audience)
       - Note: it will take a few minutes for the test user to be added. The OAuth consent will not allow you to proceed until the test user has propagated.
-      - Note about test mode: While an app is in test mode the auth tokens will expire after 1 week and need to be refreshed by running `npm run auth`.
+      - Note about test mode: While an app is in test mode the auth tokens will expire after 1 week and need to be refreshed by running `GOOGLE_OAUTH_CREDENTIALS="./gcp-oauth.keys.json" npx @cocal/google-calendar-mcp auth`.
 
 ## sjaa-meetup Gem
 
