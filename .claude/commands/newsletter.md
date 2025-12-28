@@ -96,7 +96,7 @@ This newsletter must be copy-pasteable into Gmail. Use table-based layout with i
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff;">
         <tr>
             <td align="center" style="padding: 20px 10px;">
-                <table role="presentation" width="700" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; max-width: 700px;">
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; max-width: 700px;">
                     <!-- Header -->
                     <tr>
                         <td style="background-color: #1a1a2e; color: white; padding: 30px; text-align: center; border-radius: 8px;">
