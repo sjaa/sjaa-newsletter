@@ -50,6 +50,8 @@ Note that if you are using RVM, you may need to tell Claude exactly where yoru R
     }
 ```
 
+The meetup gem requires that you have Google Chrome installed.  Be sure to update all the paths in you .mcp.json file to correlate to your own paths.
+
 ## Usage
 
 Launch Claude Code and run `/newsletter [date] [message]`.  Check the MCP server status with `/mcp` command.  Output will be sent to the `output/` directory, and includes an HTML file for the email newsletter, and a set of Markdown-formatted text files for use in Discord.
