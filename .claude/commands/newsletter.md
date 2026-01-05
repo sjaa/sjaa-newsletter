@@ -61,6 +61,10 @@ The user will provide a start date. Calculate:
 ### 4. Gather Celestial Events
 
 **Sources:**
+
+Make sure you only use the protocol (http or https) as listed below!  Some sites
+do not support https.
+
 - SeaSky.org:
   - http://www.seasky.org/astronomy/astronomy-calendar-2025.html
   - http://www.seasky.org/astronomy/astronomy-calendar-2026.html
