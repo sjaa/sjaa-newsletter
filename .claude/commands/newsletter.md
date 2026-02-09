@@ -70,6 +70,10 @@ do not support https.
   - http://www.seasky.org/astronomy/astronomy-calendar-2026.html
 - TimeAndDate.com: https://www.timeanddate.com/astronomy/sights-to-see.html
 
+If fetching the data for either source fails, try curl:
+
+`curl http://www.seasky.org/astronomy/astronomy-calendar-2026.html`
+
 **Event Types to Highlight:**
 - Meteor showers (peak dates, visibility)
 - Moon phases (especially new moon for dark sky observing)
