@@ -1,0 +1,16 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Google Calendar MCP: Authenticate",
+      "type": "shell",
+      "command": "GOOGLE_OAUTH_CREDENTIALS=\"./gcp-oauth.keys.json\" npx @cocal/google-calendar-mcp auth",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "focus": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}
