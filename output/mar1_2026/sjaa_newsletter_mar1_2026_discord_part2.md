@@ -1,5 +1,5 @@
 # 🌟 SJAA WEEKLY NEWSLETTER (Part 2 of 2)
-**Week of March 1-7, 2026**
+**Week of March 2-8, 2026**
 
 ───────────────────────────────
 
@@ -19,11 +19,11 @@ Black holes are the most extreme objects in the universe. Speaker **Natasha Abra
 
 🔗 RSVP: https://www.meetup.com/sj-astronomy/events/313432268/
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+───────────────────────────────
 
-## 🗓️ COMING UP NEXT: SWAP MEET — MARCH 8
-
+🛒 **SJAA Swap Meet**
 📅 Sunday, March 8 • Doors open ~9:00 AM through approximately Noon
+📍 Houge Park, Twilight Drive & White Oaks Avenue, San Jose, CA
 
 Buy, sell, trade, and socialize your way to astro bliss! The SJAA Swap Meet is the perfect place to find new gear, rehome equipment you no longer use, and connect with fellow members.
 

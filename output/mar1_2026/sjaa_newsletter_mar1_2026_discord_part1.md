@@ -1,5 +1,5 @@
 # 🌟 SJAA WEEKLY NEWSLETTER
-**Week of March 1-7, 2026**
+**Week of March 2-8, 2026**
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -30,18 +30,6 @@ Mercury is currently visible low on the western horizon just after sunset. Catch
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ## 📅 THIS WEEK'S EVENTS
-
-───────────────────────────────
-
-☀️ **Sunday at Houge Park**
-📅 Sunday, March 1 • 2:00 PM – 4:00 PM
-📍 Houge Park, 3972 Twilight Dr, San Jose, CA
-
-Three events run simultaneously this afternoon:
-
-• **Solar Sunday** — Safe solar viewing with white-light and H-alpha telescopes. See sunspots and prominences up close! Open to the public.
-• 🔒 **Loaner Exchange** — SJAA member equipment exchange. Pick up or return loaner telescopes. Members only.
-• 🔒 **FixIt** — Bring your telescope for a tune-up or repair from experienced SJAA members. Members only.
 
 ───────────────────────────────
 
