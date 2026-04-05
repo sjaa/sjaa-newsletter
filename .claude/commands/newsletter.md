@@ -58,7 +58,16 @@ The user will provide a start date. Calculate:
 - If an event appears in both sources, prefer the Meetup version (has better details)
 - Match events by date/time and title similarity
 
-### 4. Gather Celestial Events
+### 4. Gather Member Observing Events
+
+Read the file `./member_observing.md` in the repository root. This file lists upcoming member-only observing sessions that may not appear in any calendar source.
+
+- If the file exists and contains scheduled events, include them in a dedicated "Member Observing" section in the newsletter.
+- The file contains one event per line with date, location, and host. There is a single registration link at the bottom (e.g. `https://forms.gle/...`) that applies to all listed dates.
+- Only include events whose dates fall **on or after** the newsletter start date (skip past events).
+- If there are no upcoming events (all dates are in the past, or the file is empty), omit the Member Observing section entirely.
+
+### 5. Gather Celestial Events
 
 **Sources:**
 
@@ -80,7 +89,7 @@ If fetching the data for either source fails, try curl:
 - Planetary events (oppositions, conjunctions)
 - Special phenomena (eclipses, occultations)
 
-### 5. Generate HTML Newsletter
+### 6. Generate HTML Newsletter
 
 **IMPORTANT: Gmail Compatibility**
 This newsletter must be copy-pasteable into Gmail. Use table-based layout with inline styles only.
@@ -151,6 +160,35 @@ This newsletter must be copy-pasteable into Gmail. Use table-based layout with i
                     <!-- Spacer -->
                     <tr><td style="height: 25px;"></td></tr>
 
+                    <!-- Member Observing Section (only if upcoming events exist in member_observing.md) -->
+                    <tr>
+                        <td>
+                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                                <tr>
+                                    <td style="background-color: #fff8e1; border-left: 4px solid #f59e0b; padding: 20px; border-radius: 4px;">
+                                        <h2 style="margin: 0 0 15px 0; color: #b45309; font-family: Arial, sans-serif; font-size: 22px;">🔒 Member Observing Sessions</h2>
+                                        <p style="margin: 0 0 10px 0; font-family: Arial, sans-serif; line-height: 1.6; color: #333;">Upcoming member-only observing sessions. Sign up required — one form covers all dates:</p>
+                                        <ul style="margin: 0 0 15px 0; padding-left: 20px; font-family: Arial, sans-serif; line-height: 1.8; color: #333;">
+                                            <!-- One <li> per event from member_observing.md -->
+                                            <li style="margin-bottom: 4px;">[Day, Month Date] at [Location] (Host: [Name])</li>
+                                        </ul>
+                                        <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top: 5px;">
+                                            <tr>
+                                                <td style="background-color: #f59e0b; border-radius: 4px;">
+                                                    <a href="[REGISTRATION_LINK]" style="display: inline-block; color: #ffffff; font-family: Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1; text-align: center; text-decoration: none; padding: 12px 24px; border-radius: 4px;">Sign Up to Observe</a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <p style="margin: 15px 0 0 0; font-family: Arial, sans-serif; line-height: 1.6; color: #555; font-size: 14px;">Please monitor <a href="mailto:observers@sjaa.net" style="color: #4a90e2; text-decoration: none;">observers@sjaa.net</a> for go/no-go decisions based on weather conditions.</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Spacer -->
+                    <tr><td style="height: 25px;"></td></tr>
+
                     <!-- Event Section (repeat for each event) -->
                     <tr>
                         <td>
@@ -207,7 +245,7 @@ This newsletter must be copy-pasteable into Gmail. Use table-based layout with i
 </table>
 ```
 
-### 6. Generate Discord Versions
+### 7. Generate Discord Versions
 
 Create Discord-formatted markdown:
 
@@ -242,6 +280,17 @@ https://membership.sjaa.net. Contact volunteerchair@sjaa.net to volunteer and he
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+## 🔒 MEMBER OBSERVING SESSIONS
+(Include this section only if member_observing.md has upcoming dates)
+
+• [Day, Month Date] at [Location] (Host: [Name])
+• ...
+
+Sign up (one form for all dates): [REGISTRATION_LINK]
+Monitor observers@sjaa.net for go/no-go weather decisions.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 ## 📅 UPCOMING EVENTS
 
 [SJAA events]
@@ -259,7 +308,7 @@ Visit https://www.sjaa.net for more information.
 Clear skies! 🌟
 ```
 
-### 7. Save Output Files
+### 8. Save Output Files
 
 Create files in the `./output/{week}` directory, where `{week}` is the week of the newsletter:
 
@@ -284,10 +333,12 @@ Create files in the `./output/{week}` directory, where `{week}` is the week of t
 - Volunteer opportunities email: volunteerchair@sjaa.net
 - Use 🔒 icon for member-only events
 
-**For Member Observing Events (Mendoza Ranch, etc.):**
-- Include sign-up form: https://forms.gle/HkDVyM6XRSoM9a7i6
+**For Member Observing Events (sourced from `./member_observing.md`):**
+- Always read this file and include upcoming dates (on or after the newsletter start date) in a dedicated section
+- Use the registration link found at the bottom of the file (applies to all listed dates)
 - Link to observers mailing list: observers@sjaa.net (NOT the old Google Groups link)
 - Add weather disclaimer: "Please monitor observers@sjaa.net for go/no-go decisions based on weather conditions."
+- If all dates in the file are in the past, omit the section entirely
 
 Include the optional `message` argument in this same section.
 
